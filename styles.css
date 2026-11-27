@@ -10,42 +10,45 @@ body {
   width: 100%;
   max-width: 1272px;
   margin: 12px auto 0;
-  padding: 12px 20px 12px;
+  padding: 4px 20px 12px;
   border: 1px solid #000;
   background: #F2F2F2;
 }
 .app-header {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  position: relative;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  column-gap: 14px;
-  min-height: 54px;
+  min-height: 66px;
   margin-bottom: 8px;
 }
 .brand-logo {
+  position: absolute;
+  top: 0;
   display: block;
   width: auto;
-  height: 50px;
+  height: 64px;
   max-width: 100%;
   object-fit: contain;
 }
-.tata-group-logo { justify-self: start; }
-.tata-steel-logo { justify-self: end; }
+.tata-group-logo { left: -12px; }
+.tata-steel-logo { right: -12px; }
 .app-header h1 {
+  max-width: calc(100% - 210px);
   margin: 0;
   color: #0070C0;
   text-align: center;
   font: 26px Calibri, Arial, sans-serif;
   font-weight: normal;
 }
-.file-picker { display: flex; flex-direction: column; gap: 5px; }
+.file-picker { display: flex; flex-direction: column; gap: 12px; }
 .file-row {
   display: grid;
   grid-template-columns: 220px 150px minmax(0, 1fr) 110px;
   align-items: center;
   column-gap: 0;
-  min-height: 32px;
-  margin-bottom: 0;
+  min-height: 36px;
+  margin-bottom: 5px;
 }
 .file-row label { font-size: 14px; }
 .hidden-file { display: none; }
@@ -61,7 +64,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 32px;
+  height: 36px;
   padding: 9px 18px;
   color: #000;
   text-align: center;
@@ -85,9 +88,9 @@ body {
   display: grid;
   grid-template-columns: 220px 150px;
   align-items: center;
-  min-height: 32px;
-  margin-top: 0;
-  margin-bottom: 3px;
+  min-height: 36px;
+  margin-top: 2px;
+  margin-bottom: 8px;
 }
 .run-button {
   width: 150px;
@@ -112,7 +115,7 @@ body {
 }
 .map-shell {
   width: 100%;
-  height: clamp(240px, calc(100vh - 365px), 600px);
+  height: clamp(240px, calc(100vh - 400px), 600px);
   min-height: 240px;
   border: 1px solid #000;
   background: #f2f2f2;
@@ -191,21 +194,23 @@ body {
 }
 .north-arrow span { display:block; font-size:26px; font-weight:normal; }
 @media (max-width: 760px) {
-  .app { margin-top: 10px; padding: 10px 14px 10px; }
-  .app-header { column-gap: 10px; min-height: 48px; margin-bottom: 7px; }
-  .brand-logo { height: 44px; }
+  .app { margin-top: 10px; padding: 4px 14px 10px; }
+  .app-header { min-height: 58px; margin-bottom: 7px; }
+  .brand-logo { height: 54px; }
   .app-header h1 { font-size: 22px; }
   .file-row { grid-template-columns: minmax(130px, 1fr) 150px minmax(0, 1fr) 100px; }
   .clear-button { width: 90px; }
   .run-row { grid-template-columns: minmax(130px, 1fr) 150px; }
-  .map-shell { height: clamp(220px, calc(100vh - 350px), 600px); min-height: 220px; }
+  .map-shell { height: clamp(220px, calc(100vh - 385px), 600px); min-height: 220px; }
   .map-toolbar { gap: 10px; }
 }
 @media (max-width: 540px) {
-  .app { margin-top: 8px; padding: 8px 10px 8px; }
-  .app-header { grid-template-columns: 46px minmax(0, 1fr) 78px; column-gap: 8px; min-height: 42px; margin-bottom: 6px; }
-  .brand-logo { height: 38px; max-width: 100%; }
-  .app-header h1 { font-size: clamp(15px, 4.4vw, 18px); }
+  .app { margin-top: 8px; padding: 4px 10px 8px; }
+  .app-header { min-height: 48px; margin-bottom: 6px; }
+  .brand-logo { height: 44px; max-width: 42%; }
+  .tata-group-logo { left: -6px; }
+  .tata-steel-logo { right: -6px; }
+  .app-header h1 { max-width: calc(100% - 112px); font-size: clamp(15px, 4.4vw, 18px); }
   .file-row {
     grid-template-columns: 150px minmax(0, 1fr);
     row-gap: 7px;
@@ -217,12 +222,12 @@ body {
   .file-row .clear-button { grid-column: 1; grid-row: 3; margin-left: 0; }
   .run-row { grid-template-columns: 150px minmax(0,1fr); }
   .map-toolbar button { min-width: min(140px, calc(50vw - 30px)); }
-  .map-shell { height: clamp(190px, calc(100vh - 400px), 480px); min-height: 190px; }
+  .map-shell { height: clamp(190px, calc(100vh - 415px), 480px); min-height: 190px; }
 }
 @media (max-height: 600px) and (min-width: 541px) {
-  .app { margin-top: 6px; padding-top: 8px; padding-bottom: 8px; }
-  .app-header { min-height: 40px; margin-bottom: 5px; }
-  .brand-logo { height: 38px; }
-  .file-row, .run-row, .ui-button { min-height: 28px; height: 28px; }
+  .app { margin-top: 6px; padding-top: 4px; padding-bottom: 8px; }
+  .app-header { min-height: 48px; margin-bottom: 5px; }
+  .brand-logo { height: 46px; }
+  .file-row, .run-row, .ui-button { min-height: 30px; height: 30px; }
   .map-shell { height: max(180px, calc(100vh - 400px)); min-height: 180px; }
 }
