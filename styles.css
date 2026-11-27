@@ -31,8 +31,8 @@ body {
   max-width: 100%;
   object-fit: contain;
 }
-.tata-group-logo { left: -12px; }
-.tata-steel-logo { right: -12px; }
+.tata-group-logo { right: -12px; }
+.tata-steel-logo { left: -12px; }
 .app-header h1 {
   max-width: calc(100% - 210px);
   margin: 0;
@@ -208,8 +208,8 @@ body {
   .app { margin-top: 8px; padding: 4px 10px 8px; }
   .app-header { min-height: 48px; margin-bottom: 6px; }
   .brand-logo { height: 44px; max-width: 42%; }
-  .tata-group-logo { left: -6px; }
-  .tata-steel-logo { right: -6px; }
+  .tata-group-logo { right: -6px; }
+  .tata-steel-logo { left: -6px; }
   .app-header h1 { max-width: calc(100% - 112px); font-size: clamp(15px, 4.4vw, 18px); }
   .file-row {
     grid-template-columns: 150px minmax(0, 1fr);
