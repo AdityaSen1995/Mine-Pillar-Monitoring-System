@@ -10,7 +10,7 @@ This folder contains a browser version of the Jupyter notebook. It uses HTML, CS
 4. Under **Build and deployment**, select **Deploy from a branch**, choose **main** and **/(root)**, then save.
 5. Wait for the Pages deployment to complete. Open the URL shown in **Settings → Pages**. It will usually be `https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/`.
 
-The app code and supplied CSV contents are not sent to a Python server: files are read in the browser. The map downloads satellite tiles from Google, so the map, libraries, and tile service require internet access. The app itself does not store uploaded CSVs.
+The app code and supplied CSV contents are not sent to a Python server: files are read in the browser. The map downloads satellite tiles from Google, so the map, libraries, and tile service require internet access. The app itself does not store uploaded CSVs. If an external library is temporarily blocked, the file chooser still works; refresh after restoring internet access to calculate and display the map.
 
 ## Data format
 
