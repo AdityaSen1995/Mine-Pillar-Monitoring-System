@@ -24,3 +24,5 @@ Snapshot and report buttons trigger browser downloads. Depending on browser sett
 - `styles.css`: notebook-matching controls and responsive layout.
 - `app.js`: CSV parsing, displacement calculations, map layers and browser exports.
 - `.nojekyll`: tells Pages to serve all static assets as-is.
+
+When updating an already uploaded site, upload the replacement `index.html`, `app.js`, and `styles.css` files into the same repository root, commit the changes, and refresh the Pages site after the deployment completes.
