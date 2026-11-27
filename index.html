@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f7f7">
+  <title>Mine Pillar Monitoring System</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/proj4@2.12.1/dist/proj4.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/exceljs@4.4.0/dist/exceljs.min.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main class="app" aria-label="Mine Pillar Monitoring System">
+    <section class="file-picker" aria-label="Survey CSV files">
+      <div class="file-row" id="past-row">
+        <label for="past-file">Select past data CSV file:</label>
+        <input id="past-file" class="hidden-file" type="file" accept=".csv,text/csv">
+        <button class="ui-button file-button" id="past-select" type="button">Select File</button>
+        <span class="filename" id="past-name">No file selected</span>
+        <button class="ui-button file-button clear-button" id="clear-past" type="button">Clear</button>
+      </div>
+      <div class="file-row" id="present-row">
+        <label for="present-file">Select present data CSV file:</label>
+        <input id="present-file" class="hidden-file" type="file" accept=".csv,text/csv">
+        <button class="ui-button file-button" id="present-select" type="button">Select File</button>
+        <span class="filename" id="present-name">No file selected</span>
+      </div>
+      <div class="run-row">
+        <button class="ui-button run-button" id="run" type="button">Run</button>
+      </div>
+    </section>
+
+    <div id="status" class="status" role="status" aria-live="polite">
+      Select the past (optional) and present CSV files, then click Run.
+    </div>
+
+    <section id="map-shell" class="map-shell" aria-label="Pillar movement map">
+      <div id="map"></div>
+    </section>
+    <div class="map-toolbar" aria-label="Map controls">
+      <button id="grid-toggle" type="button" aria-pressed="false">Grid: Off</button>
+      <button id="arrows-toggle" type="button" aria-pressed="false">Arrows: &gt;3</button>
+      <button id="snapshot" type="button">Snapshot</button>
+      <button id="export-report" type="button">Export Report</button>
+    </div>
+    <div id="map-status" class="map-status" role="status" aria-live="polite"></div>
+    <div id="layout-note" class="layout-note"></div>
+  </main>
+</body>
+</html>
