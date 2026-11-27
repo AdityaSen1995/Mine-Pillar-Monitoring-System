@@ -23,6 +23,9 @@ Snapshot and report buttons trigger browser downloads. Depending on browser sett
 - `index.html`: page structure and browser library references.
 - `styles.css`: notebook-matching controls and responsive layout.
 - `app.js`: CSV parsing, displacement calculations, map layers and browser exports.
+- `assets/`: Tata Group and Tata Steel logo images used in the page header.
 - `.nojekyll`: tells Pages to serve all static assets as-is.
+
+Snapshot and Excel export open the browser's native Save As dialog in browsers that support the File System Access API (such as current Chrome and Edge on HTTPS). Other browsers use their normal download behavior.
 
 When updating an already uploaded site, upload the replacement `index.html`, `app.js`, and `styles.css` files into the same repository root, commit the changes, and refresh the Pages site after the deployment completes.

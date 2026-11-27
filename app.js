@@ -483,6 +483,8 @@ async function saveSnapshot() {
   if(!map || !survey){ui.mapStatus.textContent='Run the survey first to create a map.';return;}
   ui.snapshot.disabled=true;ui.mapStatus.textContent='Creating JPEG…';
   try {
+    const fileName=`Mine_pillar_snapshot_${new Date().toISOString().replace(/[-:TZ.]/g,'').slice(0,14)}.jpg`;
+    const saveHandle=await chooseSaveLocation(fileName,'image/jpeg',['.jpg','.jpeg'],'JPEG image');
     if(typeof html2canvas==='undefined') throw new Error('Snapshot library did not load. Check internet access.');
     placeLabels();
     if(gridOn) drawGrid();
@@ -491,17 +493,24 @@ async function saveSnapshot() {
       useCORS:true,allowTaint:false,scale:2,backgroundColor:'#fff',logging:false,
       ignoreElements:el=>el.classList?.contains('leaflet-control-zoom')
     });
-    const link=document.createElement('a');
-    link.download=`Mine_pillar_snapshot_${new Date().toISOString().replace(/[-:TZ.]/g,'').slice(0,14)}.jpg`;
-    link.href=canvas.toDataURL('image/jpeg',.95);link.click();
-    ui.mapStatus.textContent='Snapshot downloaded as JPEG.';
-  } catch(error) {ui.mapStatus.textContent=`Snapshot failed: ${error.message}`;}
+    const blob=await new Promise((resolve,reject)=>canvas.toBlob(result=>result?resolve(result):reject(new Error('Could not create JPEG image.')),'image/jpeg',.95));
+    await saveBlob(blob,fileName,saveHandle);
+    ui.mapStatus.textContent=saveHandle?'Snapshot saved.':'Snapshot downloaded as JPEG.';
+  } catch(error) {ui.mapStatus.textContent=error.name==='AbortError'?'Snapshot save cancelled.':`Snapshot failed: ${error.message}`;}
   finally {ui.snapshot.disabled=false;}
 }
 
 async function exportReport() {
   if(!survey){ui.mapStatus.textContent='Run the survey first to prepare the report.';return;}
   if(typeof ExcelJS==='undefined'){ui.mapStatus.textContent='Excel export library did not load. Check internet access.';return;}
+  let saveHandle;
+  try {
+    const fileName=`Report_${new Date().toISOString().slice(0,10).replaceAll('-','')}.xlsx`;
+    saveHandle=await chooseSaveLocation(fileName,'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',['.xlsx'],'Excel workbook');
+  } catch(error) {
+    ui.mapStatus.textContent=error.name==='AbortError'?'Report save cancelled.':`Could not open save dialog: ${error.message}`;
+    return;
+  }
   const rows=survey.rows;
   const col=[
     ['ID','Pillar ID'],['Date_past','Past Date'],['Easting_past','Easting'],['Northing_past','Northing'],['Elevation_past','Elevation'],
@@ -542,10 +551,19 @@ async function exportReport() {
     column.width=max+2;
   });
   const buffer=await workbook.xlsx.writeBuffer();
-  downloadBlob(new Blob([buffer],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),
-    `Report_${new Date().toISOString().slice(0,10).replaceAll('-','')}.xlsx`);
-  ui.mapStatus.textContent='Excel report downloaded.';
+  try {
+    await saveBlob(new Blob([buffer],{type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'}),
+      `Report_${new Date().toISOString().slice(0,10).replaceAll('-','')}.xlsx`,saveHandle);
+    ui.mapStatus.textContent=saveHandle?'Excel report saved.':'Excel report downloaded.';
+  } catch(error) {ui.mapStatus.textContent=`Could not save report: ${error.message}`;}
 }
 
 function round2(value){return Number.isFinite(value)?Math.round((value+Number.EPSILON)*100)/100:null;}
-function downloadBlob(blob,name){const a=document.createElement('a');const url=URL.createObjectURL(blob);a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);}
+async function chooseSaveLocation(name,mimeType,extensions,description){
+  if(typeof window.showSaveFilePicker!=='function') return null;
+  return window.showSaveFilePicker({suggestedName:name,types:[{description,accept:{[mimeType]:extensions}}]});
+}
+async function saveBlob(blob,name,handle){
+  if(handle){const writable=await handle.createWritable();await writable.write(blob);await writable.close();return;}
+  const a=document.createElement('a');const url=URL.createObjectURL(blob);a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
+}
