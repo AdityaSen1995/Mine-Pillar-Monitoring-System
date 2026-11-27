@@ -9,23 +9,23 @@ body {
 .app {
   width: 100%;
   max-width: 1272px;
-  margin: 26px auto 0;
-  padding: 24px 26px 28px;
+  margin: 12px auto 0;
+  padding: 12px 20px 12px;
   border: 1px solid #000;
-  background: #E7E6E6;
+  background: #F2F2F2;
 }
 .app-header {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  column-gap: 18px;
-  min-height: 76px;
-  margin-bottom: 22px;
+  column-gap: 14px;
+  min-height: 54px;
+  margin-bottom: 8px;
 }
 .brand-logo {
   display: block;
   width: auto;
-  height: 68px;
+  height: 50px;
   max-width: 100%;
   object-fit: contain;
 }
@@ -38,14 +38,14 @@ body {
   font: 26px Calibri, Arial, sans-serif;
   font-weight: normal;
 }
-.file-picker { display: flex; flex-direction: column; gap: 12px; }
+.file-picker { display: flex; flex-direction: column; gap: 5px; }
 .file-row {
   display: grid;
   grid-template-columns: 220px 150px minmax(0, 1fr) 110px;
   align-items: center;
   column-gap: 0;
-  min-height: 36px;
-  margin-bottom: 5px;
+  min-height: 32px;
+  margin-bottom: 0;
 }
 .file-row label { font-size: 14px; }
 .hidden-file { display: none; }
@@ -61,7 +61,7 @@ body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 36px;
+  height: 32px;
   padding: 9px 18px;
   color: #000;
   text-align: center;
@@ -85,9 +85,9 @@ body {
   display: grid;
   grid-template-columns: 220px 150px;
   align-items: center;
-  min-height: 36px;
-  margin-top: 2px;
-  margin-bottom: 8px;
+  min-height: 32px;
+  margin-top: 0;
+  margin-bottom: 3px;
 }
 .run-button {
   width: 150px;
@@ -104,16 +104,16 @@ body {
 .ui-button:focus-visible { outline: 2px solid #0070C0; outline-offset: 2px; }
 .ui-button:disabled { opacity: 1; cursor: wait; }
 .status {
-  min-height: 20px;
-  margin: 8px 0 14px;
+  min-height: 16px;
+  margin: 4px 0 7px;
   overflow-wrap: anywhere;
   font: 12px Arial, sans-serif;
   line-height: 1.4;
 }
 .map-shell {
   width: 100%;
-  height: clamp(300px, 62vh, 600px);
-  min-height: 300px;
+  height: clamp(240px, calc(100vh - 365px), 600px);
+  min-height: 240px;
   border: 1px solid #000;
   background: #f2f2f2;
 }
@@ -122,8 +122,8 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 18px;
-  padding: 12px;
+  gap: 12px;
+  padding: 7px 8px;
 }
 .map-toolbar button {
   min-width: 140px;
@@ -146,8 +146,8 @@ body {
 }
 .map-toolbar button:focus:not(:focus-visible) { outline: none; }
 .map-toolbar button:focus-visible { outline: 2px solid #0070C0; outline-offset: 2px; }
-.map-status { min-height: 20px; text-align: center; font: 12px Arial, sans-serif; }
-.layout-note { min-height: 4px; text-align: center; color: #555; font: 12px Arial, sans-serif; }
+.map-status { min-height: 16px; text-align: center; font: 12px Arial, sans-serif; }
+.layout-note { min-height: 0; text-align: center; color: #555; font: 12px Arial, sans-serif; }
 .pillar-label {
   display: inline-block;
   width: max-content;
@@ -191,21 +191,21 @@ body {
 }
 .north-arrow span { display:block; font-size:26px; font-weight:normal; }
 @media (max-width: 760px) {
-  .app { margin-top: 18px; padding: 18px 16px 20px; }
-  .app-header { column-gap: 10px; margin-bottom: 18px; }
-  .brand-logo { height: 56px; }
+  .app { margin-top: 10px; padding: 10px 14px 10px; }
+  .app-header { column-gap: 10px; min-height: 48px; margin-bottom: 7px; }
+  .brand-logo { height: 44px; }
   .app-header h1 { font-size: 22px; }
   .file-row { grid-template-columns: minmax(130px, 1fr) 150px minmax(0, 1fr) 100px; }
   .clear-button { width: 90px; }
   .run-row { grid-template-columns: minmax(130px, 1fr) 150px; }
-  .map-shell { height: clamp(300px, 56vh, 600px); }
-  .map-toolbar { gap: 12px; }
+  .map-shell { height: clamp(220px, calc(100vh - 350px), 600px); min-height: 220px; }
+  .map-toolbar { gap: 10px; }
 }
 @media (max-width: 540px) {
-  .app { margin-top: 14px; padding: 14px 12px 16px; }
-  .app-header { grid-template-columns: 46px minmax(0, 1fr) 78px; column-gap: 8px; min-height: 52px; margin-bottom: 16px; }
-  .brand-logo { height: 44px; max-width: 100%; }
-  .app-header h1 { font-size: clamp(16px, 4.4vw, 20px); }
+  .app { margin-top: 8px; padding: 8px 10px 8px; }
+  .app-header { grid-template-columns: 46px minmax(0, 1fr) 78px; column-gap: 8px; min-height: 42px; margin-bottom: 6px; }
+  .brand-logo { height: 38px; max-width: 100%; }
+  .app-header h1 { font-size: clamp(15px, 4.4vw, 18px); }
   .file-row {
     grid-template-columns: 150px minmax(0, 1fr);
     row-gap: 7px;
@@ -217,8 +217,12 @@ body {
   .file-row .clear-button { grid-column: 1; grid-row: 3; margin-left: 0; }
   .run-row { grid-template-columns: 150px minmax(0,1fr); }
   .map-toolbar button { min-width: min(140px, calc(50vw - 30px)); }
-  .map-shell { height: 52vh; min-height: 280px; }
+  .map-shell { height: clamp(190px, calc(100vh - 400px), 480px); min-height: 190px; }
 }
 @media (max-height: 600px) and (min-width: 541px) {
-  .map-shell { height: 54vh; min-height: 250px; }
+  .app { margin-top: 6px; padding-top: 8px; padding-bottom: 8px; }
+  .app-header { min-height: 40px; margin-bottom: 5px; }
+  .brand-logo { height: 38px; }
+  .file-row, .run-row, .ui-button { min-height: 28px; height: 28px; }
+  .map-shell { height: max(180px, calc(100vh - 400px)); min-height: 180px; }
 }
